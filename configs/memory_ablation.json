@@ -1,0 +1,156 @@
+{
+  "experiment_name": "memory_ablation",
+  "description": "Compare PPO vs Recurrent PPO on environments with varying partial observability",
+  
+  "seeds": [42, 142, 242, 342, 442],
+  
+  "base_training": {
+    "num_episodes": 1000,
+    "max_steps_per_episode": 100,
+    "learning_rate": 0.0003,
+    "discount_factor": 0.99,
+    "batch_size": 64,
+    "eval_frequency": 100,
+    "num_eval_episodes": 10,
+    "checkpoint_frequency": 500,
+    "log_frequency": 10
+  },
+  
+  "experiments": [
+    {
+      "name": "ppo_low_observability",
+      "agent": "ppo",
+      "description": "PPO on environment with low partial observability (10% popup rate)",
+      "environment": {
+        "num_nodes": 15,
+        "branching_factor": 2.0,
+        "max_depth": 7,
+        "popup_probability": 0.15,
+        "num_dependencies": 2,
+        "max_steps": 100
+      },
+      "agent_config": {
+        "gae_lambda": 0.95,
+        "clip_epsilon": 0.2,
+        "entropy_coef": 0.01,
+        "value_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "hidden_dims": [128, 128],
+        "ppo_epochs": 4
+      }
+    },
+    {
+      "name": "recurrent_ppo_low_observability",
+      "agent": "recurrent_ppo",
+      "description": "Recurrent PPO on environment with low partial observability (10% popup rate)",
+      "environment": {
+        "num_nodes": 15,
+        "branching_factor": 2.0,
+        "max_depth": 7,
+        "popup_probability": 0.15,
+        "num_dependencies": 2,
+        "max_steps": 100
+      },
+      "agent_config": {
+        "gae_lambda": 0.95,
+        "clip_epsilon": 0.2,
+        "entropy_coef": 0.01,
+        "value_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "hidden_dims": [128],
+        "lstm_hidden_dim": 128,
+        "ppo_epochs": 4
+      }
+    },
+    {
+      "name": "ppo_medium_observability",
+      "agent": "ppo",
+      "description": "PPO on environment with medium partial observability (30% popup rate)",
+      "environment": {
+        "num_nodes": 15,
+        "branching_factor": 2.0,
+        "max_depth": 7,
+        "popup_probability": 0.15,
+        "num_dependencies": 2,
+        "max_steps": 100
+      },
+      "agent_config": {
+        "gae_lambda": 0.95,
+        "clip_epsilon": 0.2,
+        "entropy_coef": 0.01,
+        "value_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "hidden_dims": [128, 128],
+        "ppo_epochs": 4
+      }
+    },
+    {
+      "name": "recurrent_ppo_medium_observability",
+      "agent": "recurrent_ppo",
+      "description": "Recurrent PPO on environment with medium partial observability (30% popup rate)",
+      "environment": {
+        "num_nodes": 15,
+        "branching_factor": 2.0,
+        "max_depth": 7,
+        "popup_probability": 0.15,
+        "num_dependencies": 2,
+        "max_steps": 100
+      },
+      "agent_config": {
+        "gae_lambda": 0.95,
+        "clip_epsilon": 0.2,
+        "entropy_coef": 0.01,
+        "value_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "hidden_dims": [128],
+        "lstm_hidden_dim": 128,
+        "ppo_epochs": 4
+      }
+    },
+    {
+      "name": "ppo_high_observability",
+      "agent": "ppo",
+      "description": "PPO on environment with high partial observability (50% popup rate)",
+      "environment": {
+        "num_nodes": 15,
+        "branching_factor": 2.0,
+        "max_depth": 7,
+        "popup_probability": 0.15,
+        "num_dependencies": 2,
+        "max_steps": 100
+      },
+      "agent_config": {
+        "gae_lambda": 0.95,
+        "clip_epsilon": 0.2,
+        "entropy_coef": 0.01,
+        "value_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "hidden_dims": [128, 128],
+        "ppo_epochs": 4
+      }
+    },
+    {
+      "name": "recurrent_ppo_high_observability",
+      "agent": "recurrent_ppo",
+      "description": "Recurrent PPO on environment with high partial observability (50% popup rate)",
+      "environment": {
+        "num_nodes": 15,
+        "branching_factor": 2.0,
+        "max_depth": 7,
+        "popup_probability": 0.15,
+        "num_dependencies": 2,
+        "max_steps": 100
+      },
+      "agent_config": {
+        "gae_lambda": 0.95,
+        "clip_epsilon": 0.2,
+        "entropy_coef": 0.01,
+        "value_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "hidden_dims": [128],
+        "lstm_hidden_dim": 128,
+        "ppo_epochs": 4
+      }
+    }
+  ]
+}

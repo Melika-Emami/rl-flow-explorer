@@ -1,0 +1,15 @@
+====================================================================================================
+STATISTICAL SIGNIFICANCE TESTS
+====================================================================================================
+
+Pairwise t-tests for Success Rate (α = 0.05)
+----------------------------------------------------------------------------------------------------
+Dqn Medium vs Ppo Medium: t=-inf, p=0.0000 ***
+Dqn Medium vs Qlearning Small: t=-inf, p=0.0000 ***
+Dqn Medium vs Recurrent Ppo Medium: t=-inf, p=0.0000 ***
+Ppo Medium vs Qlearning Small: t=nan, p=nan n.s.
+Ppo Medium vs Recurrent Ppo Medium: t=nan, p=nan n.s.
+Qlearning Small vs Recurrent Ppo Medium: t=nan, p=nan n.s.
+
+Legend: *** = significant (p < 0.05), n.s. = not significant
+====================================================================================================

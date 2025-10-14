@@ -1,0 +1,158 @@
+{
+  "experiment_name": "exploration_comparison",
+  "description": "Comparison of exploration strategies: epsilon-greedy, count-based, and curiosity-based",
+  
+  "base_environment": {
+    "num_nodes": 15,
+    "branching_factor": 2.0,
+    "max_depth": 7,
+    "popup_probability": 0.15,
+    "num_dependencies": 2,
+    "max_steps": 100
+  },
+  
+  "base_training": {
+    "num_episodes": 1000,
+    "max_steps_per_episode": 100,
+    "discount_factor": 0.99,
+    "batch_size": 32,
+    "eval_frequency": 100,
+    "num_eval_episodes": 10,
+    "checkpoint_frequency": 500,
+    "log_frequency": 10
+  },
+  
+  "experiments": [
+    {
+      "name": "dqn_epsilon_greedy",
+      "agent": "dqn",
+      "exploration": "epsilon_greedy",
+      "training": {
+        "learning_rate": 0.001
+      },
+      "agent_config": {
+        "epsilon": 1.0,
+        "epsilon_decay": 0.995,
+        "epsilon_min": 0.01,
+        "buffer_size": 10000,
+        "target_update_frequency": 100,
+        "hidden_dims": [128, 128]
+      }
+    },
+    {
+      "name": "dqn_count_based",
+      "agent": "dqn",
+      "exploration": "count_based",
+      "training": {
+        "learning_rate": 0.001
+      },
+      "agent_config": {
+        "epsilon": 0.1,
+        "epsilon_decay": 1.0,
+        "epsilon_min": 0.1,
+        "buffer_size": 10000,
+        "target_update_frequency": 100,
+        "hidden_dims": [128, 128]
+      },
+      "exploration_config": {
+        "beta": 1.0,
+        "count_mode": "state"
+      }
+    },
+    {
+      "name": "dqn_curiosity",
+      "agent": "dqn",
+      "exploration": "curiosity",
+      "training": {
+        "learning_rate": 0.001
+      },
+      "agent_config": {
+        "epsilon": 0.1,
+        "epsilon_decay": 1.0,
+        "epsilon_min": 0.1,
+        "buffer_size": 10000,
+        "target_update_frequency": 100,
+        "hidden_dims": [128, 128]
+      },
+      "exploration_config": {
+        "beta": 0.1,
+        "learning_rate": 0.001,
+        "hidden_dims": [128, 128],
+        "batch_size": 32,
+        "train_frequency": 1
+      }
+    },
+    {
+      "name": "ppo_epsilon_greedy",
+      "agent": "ppo",
+      "exploration": "epsilon_greedy",
+      "training": {
+        "learning_rate": 0.0003,
+        "batch_size": 64
+      },
+      "agent_config": {
+        "gae_lambda": 0.95,
+        "clip_epsilon": 0.2,
+        "entropy_coef": 0.01,
+        "value_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "hidden_dims": [128, 128],
+        "ppo_epochs": 4
+      },
+      "exploration_config": {
+        "epsilon": 0.1,
+        "epsilon_decay": 0.995,
+        "epsilon_min": 0.01
+      }
+    },
+    {
+      "name": "ppo_count_based",
+      "agent": "ppo",
+      "exploration": "count_based",
+      "training": {
+        "learning_rate": 0.0003,
+        "batch_size": 64
+      },
+      "agent_config": {
+        "gae_lambda": 0.95,
+        "clip_epsilon": 0.2,
+        "entropy_coef": 0.01,
+        "value_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "hidden_dims": [128, 128],
+        "ppo_epochs": 4
+      },
+      "exploration_config": {
+        "beta": 1.0,
+        "count_mode": "state"
+      }
+    },
+    {
+      "name": "ppo_curiosity",
+      "agent": "ppo",
+      "exploration": "curiosity",
+      "training": {
+        "learning_rate": 0.0003,
+        "batch_size": 64
+      },
+      "agent_config": {
+        "gae_lambda": 0.95,
+        "clip_epsilon": 0.2,
+        "entropy_coef": 0.01,
+        "value_coef": 0.5,
+        "max_grad_norm": 0.5,
+        "hidden_dims": [128, 128],
+        "ppo_epochs": 4
+      },
+      "exploration_config": {
+        "beta": 0.1,
+        "learning_rate": 0.001,
+        "hidden_dims": [128, 128],
+        "batch_size": 32,
+        "train_frequency": 1
+      }
+    }
+  ],
+  
+  "seeds": [42, 142, 242, 342, 442]
+}

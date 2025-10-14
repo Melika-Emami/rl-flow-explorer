@@ -1,0 +1,32 @@
+{
+  "experiment_name": "qlearning_small",
+  "agent": "qlearning",
+  "seed": 42,
+  
+  "environment": {
+    "num_nodes": 15,
+    "branching_factor": 2.0,
+    "max_depth": 7,
+    "popup_probability": 0.15,
+    "num_dependencies": 2,
+    "max_steps": 100
+  },
+  
+  "training": {
+    "num_episodes": 500,
+    "max_steps_per_episode": 50,
+    "learning_rate": 0.1,
+    "discount_factor": 0.99,
+    "batch_size": 1,
+    "eval_frequency": 50,
+    "num_eval_episodes": 10,
+    "checkpoint_frequency": 250,
+    "log_frequency": 10
+  },
+  
+  "agent_config": {
+    "epsilon": 1.0,
+    "epsilon_decay": 0.99,
+    "epsilon_min": 0.01
+  }
+}
