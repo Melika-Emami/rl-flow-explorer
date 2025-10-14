@@ -206,9 +206,13 @@ Comparison of exploration strategies with PPO:
 
 Comparing PPO vs Recurrent PPO on partially observable environments:
 
-- Standard PPO: 85-90% success rate
+<!-- - Standard PPO: 85-90% success rate
 - Recurrent PPO: 95-100% success rate
-- Memory provides 10-15% improvement when hidden dependencies are present
+- Memory provides 10-15% improvement when hidden dependencies are present -->
+
+- Standard PPO: 100% success rate
+- Recurrent PPO: 100% success rate
+- In this version, memory did not improve the success rate probably due to simple environment  
 
 ![Memory Comparison](ablation_plots/memory_comparison.png)
 
